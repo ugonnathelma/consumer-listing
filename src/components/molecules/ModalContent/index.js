@@ -41,10 +41,6 @@ const ModalContent = ({ companyId, closeModal }) => {
     fetchData();
   }, [companyId]);
 
-  const optimisticUpdate = data => {
-    dispatch({ type: "UPDATE_COMPANY", payload: data });
-  };
-
   const saveNewBudget = async () => {
     if (budget < company.budget_spent) {
       setError("New budget cannot be less than spent amount");
@@ -58,7 +54,7 @@ const ModalContent = ({ companyId, closeModal }) => {
       );
       if (status === 200) {
         setSuccess(true);
-        optimisticUpdate(data);
+        dispatch({ type: "UPDATE_COMPANY", payload: data });
       }
     }
   };

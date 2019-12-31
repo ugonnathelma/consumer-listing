@@ -6,7 +6,6 @@ import { DEFAULT_LOCALE } from "../../../config";
 
 const CurrencyField = ({ onValueChange, value, lang, ...props }) => {
   const [initialValue, setValue] = useState(value);
-  console.log({ value, initialValue });
 
   const handleChange = event => {
     const inputValue = event.target.value;

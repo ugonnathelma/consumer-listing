@@ -1,19 +1,22 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useContext } from "react";
 import axios from "axios";
 
 import Heading from "../../atoms/Heading";
 import CurrencyInputField from "../../atoms/InputField/CurrencyField";
 import Button from "../../atoms/Button";
 import Loader from "../../atoms/Loader";
-import { Content, ButtonWrap, ErrorDisplay } from "./styles";
+import { Content, ButtonWrap, ErrorDisplay, SuccessDisplay } from "./styles";
 import { getCurrency } from "../../../utils";
 import { DEFAULT_LOCALE, API_URL } from "../../../config";
+import { store } from "../../../config/store";
 
 const ModalContent = ({ companyId, closeModal }) => {
   const [company, setCompany] = useState({});
   const [budget, setBudget] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [isSuccess, setSuccess] = useState(false);
+  const { dispatch } = useContext(store);
 
   const isFormValid = () => {
     const isTouched =
@@ -38,17 +41,31 @@ const ModalContent = ({ companyId, closeModal }) => {
     fetchData();
   }, [companyId]);
 
-  const saveNewBudget = () => {
+  const optimisticUpdate = data => {
+    dispatch({ type: "UPDATE_COMPANY", payload: data });
+  };
+
+  const saveNewBudget = async () => {
     if (budget < company.budget_spent) {
       setError("New budget cannot be less than spent amount");
     } else {
-      axios.put(`${API_URL}/companies/${companyId}`, {
-        ...company,
-        budget: Number(budget)
-      });
-
-      console.log(companyId, Number(budget), "j;i");
+      const { status, data } = await axios.put(
+        `${API_URL}/companies/${companyId}`,
+        {
+          ...company,
+          budget: Number(budget)
+        }
+      );
+      if (status === 200) {
+        setSuccess(true);
+        optimisticUpdate(data);
+      }
     }
+  };
+
+  const handleFieldChange = value => {
+    setError(null);
+    setBudget(value);
   };
 
   return (
@@ -62,20 +79,24 @@ const ModalContent = ({ companyId, closeModal }) => {
             lang={DEFAULT_LOCALE}
             width="100%"
             value={budget}
-            onValueChange={setBudget}
+            onValueChange={handleFieldChange}
           />
           <ErrorDisplay>{error}</ErrorDisplay>
           <ButtonWrap>
-            <Button asLink onClick={closeModal}>
-              Cancel
-            </Button>
+            {isSuccess ? (
+              <SuccessDisplay>Budget Updated</SuccessDisplay>
+            ) : (
+              <Button asLink onClick={closeModal}>
+                Cancel
+              </Button>
+            )}
             <Button
               disabled={!isFormValid()}
               primary
               width="8em"
-              onClick={saveNewBudget}
+              onClick={isSuccess ? closeModal : saveNewBudget}
             >
-              Save
+              {isSuccess ? "Done" : "Save"}
             </Button>
           </ButtonWrap>
         </Fragment>

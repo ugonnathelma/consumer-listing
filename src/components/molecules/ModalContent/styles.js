@@ -13,6 +13,11 @@ export const ButtonWrap = styled.div`
 `;
 
 export const ErrorDisplay = styled.div`
-  min-height: 1em;
+  min-height: 1.5em;
+  margin-top: 0.4em;
   color: ${({ theme }) => theme.errorColor};
+`;
+
+export const SuccessDisplay = styled.div`
+  color: ${({ theme }) => theme.successColor};
 `;

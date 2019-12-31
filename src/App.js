@@ -1,25 +1,30 @@
 import React from "react";
-import logo from "./logo.svg";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import List from "./components/organisms/List";
+import { ReactComponent as Logo } from "./logo.svg";
+import { theme } from "./config/theme";
+
+const GlobalStyle = createGlobalStyle`
+body {
+  padding: 1em 2em;
+  background: #f5f5ff;
+  margin: 0 auto;
 }
+
+* {
+  box-sizing: border-box;
+}
+`;
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <center>
+      <Logo width="15em" />
+    </center>
+    <GlobalStyle />
+    <List />
+  </ThemeProvider>
+);
 
 export default App;

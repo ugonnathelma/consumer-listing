@@ -61,6 +61,7 @@ const ModalContent = ({ companyId, closeModal }) => {
 
   const handleFieldChange = value => {
     setError(null);
+    setSuccess(false);
     setBudget(value);
   };
 

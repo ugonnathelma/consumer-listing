@@ -18,8 +18,13 @@ const List = ({ companies }) => {
   };
 
   return (
-    <ListContainer>
-      <Heading text="Consumers" padding="0em 2em" showRule />
+    <ListContainer data-test-id="consumer-list">
+      <Heading
+        text="Consumers"
+        padding="0em 2em"
+        showRule
+        dataTestId="consumer-list-heading"
+      />
       {showModal && (
         <Modal
           header={"Update Total Budget"}

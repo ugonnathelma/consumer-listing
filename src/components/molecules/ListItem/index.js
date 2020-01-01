@@ -15,28 +15,33 @@ const ListItem = ({
   hideRule
 }) => {
   return (
-    <Wrap padding={padding} onClick={onClick} active={active}>
+    <Wrap
+      padding={padding}
+      onClick={onClick}
+      active={active}
+      data-test-id="consumer-list-item"
+    >
       <Flex cellWidths={[1, 3]}>
         <div>
           <Heading text={name} primary size="1.2em"></Heading>
         </div>
         <Flex cellWidths={[1, 1, 1, 1]}>
-          <div>
+          <div data-test-id="purchase-date">
             <p>
               <strong>1st Purchase Date:</strong> {firstPurchaseDate}
             </p>
           </div>
-          <div>
+          <div data-test-id="total-budget">
             <p>
               <strong>Total Budget:</strong> {totalBudget}
             </p>
           </div>
-          <div>
+          <div data-test-id="budget-spent">
             <p>
               <strong>Budget Spent:</strong> {budgetSpent}
             </p>
           </div>
-          <div>
+          <div data-test-id="budget-left">
             <p>
               <strong>Budget Left:</strong> {budgetLeft}
             </p>

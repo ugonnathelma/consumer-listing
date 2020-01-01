@@ -8,3 +8,5 @@ export const theme = {
   lightGrey: "lightgrey",
   lighterGrey: "#f7f7f7"
 };
+
+export default theme;

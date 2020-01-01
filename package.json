@@ -2,6 +2,7 @@
   "name": "consumer-listing",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ugonnathelma.github.io/consumer-listing",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -19,7 +20,9 @@
     "start": "concurrently --kill-others \"yarn start-server\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,7 +40,8 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^3.8.1"
+    "cypress": "^3.8.1",
+    "gh-pages": "^2.1.1"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",

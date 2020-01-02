@@ -27,7 +27,7 @@ describe("ModalContent component", () => {
     error: null,
     isLoading: false,
     isSuccess: false,
-    budget: "20.000",
+    budget: 20.0,
     handleFieldChange: mockhandleFieldChange
   };
 
@@ -75,8 +75,8 @@ describe("ModalContent component", () => {
     ).toContain("Martian Ugonna");
   });
 
-  it(`renders "20.000" in input field`, () => {
-    expect(wrapper.find(CurrencyField).props().value).toEqual("20.000");
+  it(`renders 20.000 in input field`, () => {
+    expect(wrapper.find(CurrencyField).props().value).toEqual(20.0);
   });
 
   it(`renders "There is an error" button when there is an error`, () => {

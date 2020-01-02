@@ -37,6 +37,6 @@ export default CurrencyField;
 
 CurrencyField.propTypes = {
   onValueChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.number,
   lang: PropTypes.string
 };

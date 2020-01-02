@@ -64,7 +64,7 @@ const ModalContent = ({
 export default ModalContent;
 
 ModalContent.propTypes = {
-  company: CompanyPropType,
+  company: PropTypes.shape(CompanyPropType),
   closeModal: PropTypes.func.isRequired,
   saveNewBudget: PropTypes.func.isRequired,
   isFormValid: PropTypes.func.isRequired,

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import ListItem from "../../molecules/ListItem";
 import { ListContainer } from "./styles";
@@ -7,6 +8,7 @@ import { getCurrency, getDate } from "../../../utils";
 import Modal from "../Modal";
 import ModalContent from "../ModalContent";
 import { DEFAULT_LOCALE } from "../../../config";
+import { CompanyPropType } from "../../../utils/proptypes";
 
 const List = ({ companies }) => {
   const [showModal, setShowModal] = useState(false);
@@ -62,3 +64,7 @@ const List = ({ companies }) => {
 };
 
 export default List;
+
+List.propTypes = {
+  companies: PropTypes.arrayOf(PropTypes.shape(CompanyPropType))
+};

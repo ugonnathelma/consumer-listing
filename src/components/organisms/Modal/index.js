@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 
 import Heading from "../../atoms/Heading";
@@ -28,3 +29,14 @@ const Modal = ({ header, content, close, theme }) => {
 };
 
 export default withTheme(Modal);
+
+Modal.propTypes = {
+  header: PropTypes.string,
+  content: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.element
+  ]),
+  close: PropTypes.func,
+  theme: PropTypes.object
+};

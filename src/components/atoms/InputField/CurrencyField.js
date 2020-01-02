@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import InputField from ".";
 import { getCurrency, normalizeCurrency } from "../../../utils";
 import { DEFAULT_LOCALE } from "../../../config";
 
-const CurrencyField = ({ onValueChange, value, lang, ...props }) => {
+const CurrencyField = ({
+  onValueChange,
+  value,
+  lang = { DEFAULT_LOCALE },
+  ...props
+}) => {
   const [initialValue, setValue] = useState(value);
 
   const handleChange = event => {
@@ -28,3 +34,9 @@ const CurrencyField = ({ onValueChange, value, lang, ...props }) => {
 };
 
 export default CurrencyField;
+
+CurrencyField.propTypes = {
+  onValueChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  lang: PropTypes.string
+};

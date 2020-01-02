@@ -1,7 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import Flex from "../../atoms/Flex";
 import { Wrap } from "./styles";
 import Heading from "../../atoms/Heading";
+import CompanyPropType from "../../../utils/proptypes";
 
 const ListItem = ({
   name,
@@ -54,3 +57,11 @@ const ListItem = ({
 };
 
 export default ListItem;
+
+ListItem.propTypes = {
+  padding: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  active: PropTypes.bool,
+  hideRule: PropTypes.bool,
+  ...CompanyPropType
+};

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
 import Heading from "../../atoms/Heading";
 import CurrencyInputField from "../../atoms/InputField/CurrencyField";
@@ -6,6 +7,7 @@ import Button from "../../atoms/Button";
 import Loader from "../../atoms/Loader";
 import { Content, ButtonWrap, ErrorDisplay, SuccessDisplay } from "./styles";
 import { DEFAULT_LOCALE } from "../../../config";
+import { CompanyPropType } from "../../../utils/proptypes";
 
 const ModalContent = ({
   company,
@@ -60,3 +62,15 @@ const ModalContent = ({
 };
 
 export default ModalContent;
+
+ModalContent.propTypes = {
+  company: CompanyPropType,
+  closeModal: PropTypes.func.isRequired,
+  saveNewBudget: PropTypes.func.isRequired,
+  isFormValid: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
+  isSuccess: PropTypes.bool,
+  budget: PropTypes.number,
+  handleFieldChange: PropTypes.func.isRequired
+};

@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 import { getCurrency } from "../../../utils";
 import { DEFAULT_LOCALE, API_URL } from "../../../config";
 import { store } from "../../../config/store";
+import ModalContent from "./ModalContent";
 
-const ModalContent = ({ companyId, closeModal }) => {
+const Content = ({ companyId, closeModal }) => {
   const [company, setCompany] = useState({});
   const [budget, setBudget] = useState(null);
   const [error, setError] = useState("");
@@ -64,7 +66,6 @@ const ModalContent = ({ companyId, closeModal }) => {
     <ModalContent
       handleFieldChange={handleFieldChange}
       saveNewBudget={saveNewBudget}
-      true
       budget={budget}
       isFormValid={isFormValid}
       error={error}
@@ -76,4 +77,9 @@ const ModalContent = ({ companyId, closeModal }) => {
   );
 };
 
-export default ModalContent;
+export default Content;
+
+Content.propTypes = {
+  companyId: PropTypes.number.isRequired,
+  closeModal: PropTypes.func.isRequired
+};

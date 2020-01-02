@@ -1,11 +1,6 @@
-import React, { useState, useEffect, Fragment, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
-import Heading from "../../atoms/Heading";
-import CurrencyInputField from "../../atoms/InputField/CurrencyField";
-import Button from "../../atoms/Button";
-import Loader from "../../atoms/Loader";
-import { Content, ButtonWrap, ErrorDisplay, SuccessDisplay } from "./styles";
 import { getCurrency } from "../../../utils";
 import { DEFAULT_LOCALE, API_URL } from "../../../config";
 import { store } from "../../../config/store";
@@ -66,39 +61,18 @@ const ModalContent = ({ companyId, closeModal }) => {
   };
 
   return (
-    <Content>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Fragment>
-          <Heading text={company.name} size="1.2em" />
-          <CurrencyInputField
-            lang={DEFAULT_LOCALE}
-            width="100%"
-            value={budget}
-            onValueChange={handleFieldChange}
-          />
-          <ErrorDisplay>{error}</ErrorDisplay>
-          <ButtonWrap>
-            {isSuccess ? (
-              <SuccessDisplay>Budget Updated</SuccessDisplay>
-            ) : (
-              <Button asLink onClick={closeModal}>
-                Cancel
-              </Button>
-            )}
-            <Button
-              disabled={!isFormValid()}
-              primary
-              width="8em"
-              onClick={isSuccess ? closeModal : saveNewBudget}
-            >
-              {isSuccess ? "Done" : "Save"}
-            </Button>
-          </ButtonWrap>
-        </Fragment>
-      )}
-    </Content>
+    <ModalContent
+      handleFieldChange={handleFieldChange}
+      saveNewBudget={saveNewBudget}
+      true
+      budget={budget}
+      isFormValid={isFormValid}
+      error={error}
+      isLoading={isLoading}
+      isSuccess={isSuccess}
+      closeModal={closeModal}
+      company={company}
+    />
   );
 };
 

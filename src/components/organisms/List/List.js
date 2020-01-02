@@ -5,7 +5,7 @@ import { ListContainer } from "./styles";
 import Heading from "../../atoms/Heading";
 import { getCurrency, getDate } from "../../../utils";
 import Modal from "../Modal";
-import ModalContent from "../../molecules/ModalContent";
+import ModalContent from "../ModalContent";
 import { DEFAULT_LOCALE } from "../../../config";
 
 const List = ({ companies }) => {

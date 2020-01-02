@@ -1,19 +1,24 @@
 const currencyValidators = {
   "de-DE": value => {
     const normalized = value.replace(/\./g, "").replace(/,/g, ".");
-    const splitValue = value.split(",");
-    const containsOneDecimalIndicator = splitValue.length <= 2;
-    const containsDotsAfterDecimal = () => splitValue[1].split(".").length > 1;
-    const containsConsecutiveDots = () => splitValue[0].split("..").length > 1;
-    const isWholeNumberValidNumber = !isNaN(splitValue[0].replace(/\./g, ""));
+    const [wholeNumber, decimalParts] = value.split(",");
+    const decimalMatches = value.match(/,/g);
+    const containsOneDecimalIndicator =
+      !decimalMatches || decimalMatches.length <= 1;
+    const containsDotsAfterDecimal = () => decimalParts.includes(".");
+    const containsConsecutiveSeparators = () => value.match(/([.,]{2})/);
+    const isWholeNumberValidNumber = !isNaN(wholeNumber);
+    const isDecimalValidNumber = !decimalParts || !isNaN(decimalParts);
 
     // allow empty string
     if (
       value === "" ||
-      (containsOneDecimalIndicator && isWholeNumberValidNumber)
+      (containsOneDecimalIndicator &&
+        isWholeNumberValidNumber &&
+        isDecimalValidNumber)
     ) {
-      return !containsConsecutiveDots() &&
-        (!splitValue[1] || !containsDotsAfterDecimal())
+      return !containsConsecutiveSeparators() &&
+        (!decimalParts || !containsDotsAfterDecimal())
         ? normalized
         : undefined;
     }

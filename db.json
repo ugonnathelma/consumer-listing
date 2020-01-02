@@ -13,6 +13,41 @@
       "budget": 1123.32,
       "budget_spent": 451.3754,
       "date_of_first_purchase": "2120-01-14"
+    },
+    {
+      "id": 3,
+      "name": "Mars Firma",
+      "budget": 32323,
+      "budget_spent": 4500,
+      "date_of_first_purchase": "2119-07-07"
+    },
+    {
+      "id": 4,
+      "name": "Rocket Firma",
+      "budget": 2323,
+      "budget_spent": 1100,
+      "date_of_first_purchase": "2119-07-07"
+    },
+    {
+      "id": 5,
+      "name": "Meteor Firma",
+      "budget": 300000,
+      "budget_spent": 45000,
+      "date_of_first_purchase": "2119-07-07"
+    },
+    {
+      "id": 6,
+      "name": "Ruby Firma",
+      "budget": 1230,
+      "budget_spent": 500,
+      "date_of_first_purchase": "2119-07-07"
+    },
+    {
+      "id": 7,
+      "name": "Block Firma",
+      "budget": 259,
+      "budget_spent": 200,
+      "date_of_first_purchase": "2119-07-07"
     }
   ]
 }

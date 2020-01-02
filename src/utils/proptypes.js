@@ -7,3 +7,5 @@ export const CompanyPropType = {
   budgetSpent: PropTypes.number,
   budgetLeft: PropTypes.number
 };
+
+export default CompanyPropType;
